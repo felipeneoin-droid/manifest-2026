@@ -9,13 +9,19 @@
   "theme_color": "#22c55e",
   "icons": [
     {
-      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAAAXNSR0IArs4c6QAAAo9JREFUeJztnU1rE1EUxs+dpGSrYG24UIqiW7sUC0FcKAUpuCktuBCqYt2IaC2KiogfdSe4tMYv6AuCdfdTEVt3UxQf2JV9iFWULFSolCar1/N7bDp5ZJKNTmY3M/cB+ZBJkjvz7Dl3GG4CAMnQ9eP//33f5DPoAgwAA8AAMAAMAAPAADAADAADwADwB8D1w7k7JxV8zC28dgHei8QpcX6T7+sCuV5cB5IC9ZvLDwA73h86p/Xo5itBpqTj4uDeU/qq5eyU2p8dCF6M2tOd5zMCl9zN9p8C7GlqL51AweBHEARBEAQhAzJ7oQ/4QKfQf3f+23/D1nLq7PnyY3Vv6p/XKxjM7GEGQks2pmeH6xmMJ3TfpjshNfYL9OgARx/lllJuOV3lYf0Ef5n4h2vV9S0A/S+7fi6Cq1+Jvt5F4Hn6re4rq4+8XMrn6/7c5TPlrqNaH4IgCEIQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQBEEQxH8QvwAaO4/In4k3TQAAAABJRU5ErkJggg==",
+      "src": "https://i.ibb.co/gL5HKWDt/192-icon.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAAAXNSR0IArs4c6QAAAo9JREFUeJztnU1rE1EUxs+dpKSrwFpxoxRFt3YpFoK4UApScFNaWAhVsa4syieoPEd3grW1/CpYXbsVEXG/mKL4gV/Rh1hFyUKFUpq8nuf02HTyyCQbncnsMtwHaZPO/J75n8kx+G+BEGmPgK7Pm4R7blA6CPwDMG4zG7oAV7mLZnIDAmG0DEzr2b+9eXcL1kRfjI5vQDUzYIrP8H/6FcA0/x7F1wwAAxgABoCBeIADj3cBm9e4X8B/X3rhgS3LzRIe+LRzprrD2Y4WMPB4F+gMTPG1Xx0AAAAASUVORK5CYII=",
+      "src": "https://i.ibb.co/F4mFF79z/icon-512-x-512-px-1.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://i.ibb.co/rRxFgQ2j/maskable-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
