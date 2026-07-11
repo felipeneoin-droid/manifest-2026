@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Rifa Jovem</title>
+  
+  <!-- ===== PWA CONFIG ===== -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Rifa Jovem">
+  <meta name="theme-color" content="#22c55e">
+  <meta name="mobile-web-app-capable" content="yes">
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .login-box {
+      background: #1e293b;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      width: 100%;
+      max-width: 400px;
+      border: 1px solid #334155;
+    }
+    
+    .app-icon {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .app-icon img {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      border: 2px solid #22c55e;
+      object-fit: cover;
+      background: #1e293b;
+    }
+    
+    .login-box h1 {
+      text-align: center;
+      color: #22c55e;
+      font-size: 28px;
+      margin-bottom: 4px;
+    }
+    .login-box .subtitle {
+      text-align: center;
+      color: #94a3b8;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+    .login-box .campaign {
+      text-align: center;
+      color: #22c55e;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      background: rgba(34,197,94,0.1);
+      padding: 6px 12px;
+      border-radius: 20px;
+      display: inline-block;
+      width: 100%;
+    }
+    .form-group { margin-bottom: 16px; }
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: #94a3b8;
+      font-size: 13px;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #334155;
+      border-radius: 10px;
+      font-size: 16px;
+      transition: 0.3s;
+      background: #0f172a;
+      color: #ffffff;
+    }
+    .form-group input:focus {
+      border-color: #22c55e;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(34,197,94,0.15);
+    }
+    .form-group input::placeholder {
+      color: #64748b;
+    }
+    .btn-login {
+      width: 100%;
+      padding: 14px;
+      background: #22c55e;
+      border: none;
+      border-radius: 10px;
+      color: #0f172a;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 8px;
+    }
+    .btn-login:hover {
+      background: #16a34a;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(34,197,94,0.3);
+    }
+    .btn-login:disabled {
+      opacity: 0.7;
+      transform: none;
+      cursor: not-allowed;
+    }
+    .error-msg {
+      background: rgba(239,68,68,0.15);
+      color: #ef4444;
+      padding: 10px 14px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      display: none;
+      font-size: 14px;
+      border: 1px solid #ef4444;
+    }
+    .info-msg {
+      background: rgba(34,197,94,0.15);
+      color: #22c55e;
+      padding: 10px 14px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      font-size: 14px;
+      text-align: center;
+      display: none;
+      border: 1px solid #22c55e;
+    }
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 16px 0;
+      color: #334155;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid #334155;
+    }
+    .divider span {
+      padding: 0 12px;
+      font-size: 12px;
+      color: #64748b;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 24px;
+      color: #64748b;
+      font-size: 12px;
+    }
+    .credenciais {
+      margin-top: 16px;
+      padding: 12px;
+      background: #0f172a;
+      border-radius: 8px;
+      font-size: 12px;
+      color: #94a3b8;
+      text-align: center;
+      border: 1px dashed #334155;
+    }
+    .credenciais strong {
+      color: #22c55e;
+    }
+    .btn-download {
+      width: 100%;
+      padding: 14px;
+      background: rgba(59, 130, 246, 0.12);
+      border: 2px solid #3b82f6;
+      border-radius: 10px;
+      color: #3b82f6;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .btn-download:hover {
+      background: rgba(59, 130, 246, 0.25);
+      transform: scale(1.02);
+      box-shadow: 0 4px 20px rgba(59, 130, 246, 0.2);
+    }
+    @media (max-width: 480px) {
+      .login-box { padding: 24px; }
+      .app-icon img { width: 64px; height: 64px; }
+      .login-box h1 { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    
+    <!-- ÍCONE -->
+    <div class="app-icon">
+      <img src="icons/icon-192.png" alt="Ícone Rifa" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2280%22%3E%3Crect width=%2280%22 height=%2280%22 fill=%22%2322c55e%22 rx=%2220%22/%3E%3Ctext x=%2240%22 y=%2250%22 text-anchor=%22middle%22 fill=%22%230f172a%22 font-size=%2236%22 font-weight=%22bold%22%3E🎫%3C/text%3E%3C/svg%3E'">
+    </div>
+    
+    <h1>🎫 Rifa</h1>
+    <p class="subtitle">Sistema de Gerenciamento</p>
+    <div class="campaign">🎯 Congresso Jovem 2026</div>
+    
+    <div id="infoMsg" class="info-msg">
+      <span id="infoText">Carregando...</span>
+    </div>
+    
+    <div id="errorMsg" class="error-msg"></div>
+    
+    <form id="loginForm">
+      <div class="form-group">
+        <label>👤 Usuário / ID</label>
+        <input type="text" id="usuario" placeholder="Ex: ADMIN" required autofocus>
+      </div>
+      
+      <div class="form-group">
+        <label>🔒 Senha</label>
+        <input type="password" id="senha" placeholder="Digite sua senha" required>
+      </div>
+      
+      <button type="submit" class="btn-login" id="loginBtn">🚀 Entrar</button>
+    </form>
+    
+    <div class="divider">
+      <span>📱</span>
+    </div>
+    
+    <div class="credenciais">
+      <strong>Ad Jardin Regado:</strong><br>
+      <span style="color: #94a3b8;">Congresso de Jovens 2026</span>
+    </div>
+    
+    <div class="footer">Versão 2.0.0 &copy; 2026</div>
+  </div>
+  
+  <script>
+    (function() {
+      console.log('=== Página de Login Carregada ===');
+      
+      // ============================================
+      // REGISTRAR SERVICE WORKER
+      // ============================================
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('sw.js')
+            .then(function(registration) {
+              console.log('✅ Service Worker registrado com sucesso!');
+            })
+            .catch(function(error) {
+              console.log('❌ Falha ao registrar Service Worker:', error);
+            });
+        });
+      }
+      
+      // ============================================
+      // URL DO APPS SCRIPT (BACKEND)
+      // ============================================
+      var scriptUrl = 'https://script.google.com/macros/s/AKfycbzApOiRbdid9v-8N7wri9mREJ7AnfvLg0l6NCZuRJ2KacmjU5OjIX-ctGVITMAH5q0A/exec';
+      
+      var form = document.getElementById('loginForm');
+      var usuario = document.getElementById('usuario');
+      var senha = document.getElementById('senha');
+      var errorMsg = document.getElementById('errorMsg');
+      var infoMsg = document.getElementById('infoMsg');
+      var infoText = document.getElementById('infoText');
+      var btn = document.getElementById('loginBtn');
+      
+      // ============================================
+      // DETECTAR SE JÁ ESTÁ INSTALADO
+      // ============================================
+      if (window.matchMedia('(display-mode: standalone)').matches) {
+        console.log('✅ App já está instalado!');
+      }
+      
+      // ============================================
+      // DETECTAR INSTALAÇÃO PWA
+      // ============================================
+      window.addEventListener('beforeinstallprompt', function(e) {
+        e.preventDefault();
+        console.log('📱 App pode ser instalado');
+      });
+      
+      window.addEventListener('appinstalled', function() {
+        console.log('✅ App instalado com sucesso!');
+      });
+      
+      // ============================================
+      // LOGIN - Chama o Apps Script
+      // ============================================
+      function irParaPainel(token, vendedor) {
+        console.log('=== irParaPainel ===');
+        console.log('🔑 Token:', token);
+        console.log('👤 Tipo:', vendedor.Tipo);
+        
+        var url;
+        if (vendedor.Tipo === 'ADMIN') {
+          url = scriptUrl + '?page=panel-admin&token=' + encodeURIComponent(token);
+        } else {
+          url = scriptUrl + '?page=panel-vendedor&token=' + encodeURIComponent(token);
+        }
+        
+        console.log('🔄 Redirecionando para:', url);
+        window.location.href = url;
+      }
+      
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        console.log('📝 Formulário submetido');
+        
+        var usuarioVal = usuario.value.trim().toUpperCase();
+        var senhaVal = senha.value.trim();
+        
+        if (!usuarioVal || !senhaVal) {
+          mostrarErro('Preencha todos os campos');
+          return;
+        }
+        
+        console.log('🔐 Tentando login:', usuarioVal);
+        
+        errorMsg.style.display = 'none';
+        btn.disabled = true;
+        btn.textContent = '⏳ Entrando...';
+        mostrarInfo('Validando credenciais...');
+        
+        // 🔥 CHAMA O APPS SCRIPT PARA VALIDAR
+        google.script.run
+          .withSuccessHandler(function(resultado) {
+            btn.disabled = false;
+            btn.textContent = '🚀 Entrar';
+            
+            console.log('📥 Resposta:', resultado);
+            
+            if (resultado.success) {
+              console.log('✅ Login OK!');
+              mostrarInfo('✅ Redirecionando...');
+              irParaPainel(resultado.token, resultado.vendedor);
+            } else {
+              console.log('❌ Falha:', resultado.message);
+              mostrarErro(resultado.message || 'Credenciais inválidas');
+            }
+          })
+          .withFailureHandler(function(error) {
+            btn.disabled = false;
+            btn.textContent = '🚀 Entrar';
+            console.error('❌ Erro:', error);
+            mostrarErro('Erro: ' + error.message);
+          })
+          .validarLoginVendedor(usuarioVal, senhaVal);
+      });
+      
+      function mostrarErro(msg) {
+        errorMsg.textContent = msg;
+        errorMsg.style.display = 'block';
+        infoMsg.style.display = 'none';
+      }
+      
+      function mostrarInfo(msg) {
+        if (msg) {
+          infoText.textContent = msg;
+          infoMsg.style.display = 'block';
+        } else {
+          infoMsg.style.display = 'none';
+        }
+        errorMsg.style.display = 'none';
+      }
+      
+      senha.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          form.dispatchEvent(new Event('submit'));
+        }
+      });
+      
+    })();
+  </script>
+</body>
+</html>
